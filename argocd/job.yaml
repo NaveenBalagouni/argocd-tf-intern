@@ -130,7 +130,7 @@ spec:
             - name: TF_BRANCH
               value: "main"   # branch to use
             - name: SSD_VERSION_BRANCH
-              value: "2025-05"  # version variable for Terraform
+              value: "2025-06"  # version variable for Terraform
           volumeMounts:
             - name: workspace
               mountPath: /workspace
