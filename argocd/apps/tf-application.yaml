@@ -1,0 +1,25 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: ssd-terraform-installation
+  namespace: argocd
+spec:
+  project: default
+
+  # Source defines where ArgoCD pulls the manifests from
+  source:
+    repoURL: 'https://github.com/NaveenBalagouni/argocd-tf-intern.git'
+    targetRevision: main   # Or a release branch
+    path: 'argocd'           # Path inside repo containing Kubernetes manifests
+
+  # Destination defines where to deploy
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: ssd-tf-argocd
+
+  syncPolicy:
+    automated:
+      prune: true        # Automatically remove resources no longer in Git
+      selfHeal: true     # Automatically sync drifted resources
+    syncOptions:
+      - CreateNamespace=true
